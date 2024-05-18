@@ -7,6 +7,7 @@
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "start:metro": "react-native start --port=8082",
     "android": "react-native run-android",
+    "run:android": "react-native run-android --port=8082",
     "run:ios": "react-native run-ios --simulator='iPhone 14 Pro' --port=8082",
     "lint": "eslint .",
     "test": "jest"
