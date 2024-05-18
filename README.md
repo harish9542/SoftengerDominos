@@ -12,10 +12,10 @@ To start Metro, run the following command from the _root_ of your React Native p
 
 ```bash
 # using npm
-npm start
+npm metro
 
 # OR using Yarn
-yarn start
+yarn metro
 ```
 
 ## Step 2: Start your Application
@@ -26,7 +26,7 @@ Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _roo
 
 ```bash
 # using npm
-npm run android
+npm android
 
 # OR using Yarn
 yarn android
@@ -36,7 +36,7 @@ yarn android
 
 ```bash
 # using npm
-npm run ios
+npm ios
 
 # OR using Yarn
 yarn ios
