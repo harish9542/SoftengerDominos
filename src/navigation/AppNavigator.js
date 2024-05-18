@@ -9,8 +9,8 @@ const Stack = createStackNavigator();
 const AppNavigator = () => {
   return (
     <NavigationContainer>
-      {/* <Stack.Navigator initialRouteName="AddTwoNum"> */}
-      <Stack.Navigator initialRouteName="Search">
+      <Stack.Navigator initialRouteName="AddTwoNum">
+      {/* <Stack.Navigator initialRouteName="Search"> */}
       <Stack.Screen
           name="Search"
           component={Dropdown}
