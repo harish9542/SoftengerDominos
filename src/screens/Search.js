@@ -9,7 +9,8 @@ import {
   Image,
 } from 'react-native';
 import assets from '../assets';
-import { DARK_GREY, GREY, WHITE } from '../constants/colors';
+import {DARK_GREY, GREY, WHITE} from '../constants/colors';
+import { SEARCH_PLACEHOLDER } from '../constants/strings';
 
 const Dropdown = () => {
   const [visible, setVisible] = useState(false);
@@ -47,50 +48,55 @@ const Dropdown = () => {
 
   return (
     <View style={styles.container}>
-      <TextInput
-        style={styles.input}
-        placeholder="Search..."
-        value={searchText}
-        onChangeText={handleSearch}
-        onFocus={() => setVisible(true)} // Show dropdown on focus
-      />
-      <TouchableOpacity style={styles.iconRight}>
-        {/* Icon on the right side */}
-        <Image style={styles.icon} source={assets.isSearch} />
-      </TouchableOpacity>
-      <TouchableOpacity onPress={toggleDropdown} style={styles.iconRight}>
-        <Image
-          style={styles.icon}
-          source={visible ? assets.isBlackClose : assets.isMenu}
+      <View style={styles.textInput}>
+        <TextInput
+          style={styles.input}
+          placeholder={SEARCH_PLACEHOLDER}
+          value={searchText}
+          onChangeText={handleSearch}
+          onFocus={() => setVisible(true)} // Show dropdown on focus
         />
-      </TouchableOpacity>
+        <TouchableOpacity style={styles.iconRight}>
+          {/* Icon on the right side */}
+          <Image style={styles.icon} source={assets.isSearch} />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={toggleDropdown} style={styles.iconRight}>
+          <Image
+            style={styles.icon}
+            source={visible ? assets.isBlackClose : assets.isMenu}
+          />
+        </TouchableOpacity>
 
-      {visible && (
-        <View style={styles.dropdown}>
-          {filteredData.length > 0 ? (
-            <FlatList
-              data={filteredData}
-              renderItem={({item}) => (
-                <TouchableOpacity
-                  onPress={() => handleSelectItem(item)}
-                  style={styles.item}>
-                  <Text>{item.name}</Text>
-                </TouchableOpacity>
-              )}
-              keyExtractor={item => item.id.toString()}
-              style={styles.list}
-            />
-          ) : (
-            <Text style={styles.noItemsText}>No items found</Text>
-          )}
-        </View>
-      )}
+        {visible && (
+          <View style={styles.dropdown}>
+            {filteredData.length > 0 ? (
+              <FlatList
+                data={filteredData}
+                renderItem={({item}) => (
+                  <TouchableOpacity
+                    onPress={() => handleSelectItem(item)}
+                    style={styles.item}>
+                    <Text>{item.name}</Text>
+                  </TouchableOpacity>
+                )}
+                keyExtractor={item => item.id.toString()}
+                style={styles.list}
+              />
+            ) : (
+              <Text style={styles.noItemsText}>No items found</Text>
+            )}
+          </View>
+        )}
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
+  },
+  textInput: {
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: 10,
@@ -108,7 +114,6 @@ const styles = StyleSheet.create({
     borderWidth: 0,
   },
   iconRight: {
-    // marginLeft: 10,
     padding: 3,
   },
   dropdown: {
@@ -120,11 +125,11 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: DARK_GREY,
     borderRadius: 5,
-    maxHeight: 200,
+    maxHeight: 400, // Increased height
     zIndex: 1,
   },
   list: {
-    maxHeight: 150,
+    maxHeight: 400, // Increased height
   },
   item: {
     padding: 10,
